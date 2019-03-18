@@ -42,9 +42,9 @@ make
 #make_build
 
 %install
-
-mkdir -p $RPM_BUILD_ROOT/%{_bindir}
-install  ./build/radeon-profile $RPM_BUILD_ROOT/%{_bindir}
+%make_install
+#mkdir -p $RPM_BUILD_ROOT/%{_bindir}
+#install  ./build/radeon-profile $RPM_BUILD_ROOT/%{_bindir}
 
 %files
 %{_bindir}/%{name}
