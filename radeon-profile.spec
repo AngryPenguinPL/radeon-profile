@@ -33,7 +33,7 @@ Application to read current clocks of ATi Radeon cards (xf86-video-ati, xf86-vid
 %setup -q
 
 %build
-%qmake_qt5 PREFIX=/usr
+%qmake_qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" CONFIG+=silent
 %make_build
 
 %install
