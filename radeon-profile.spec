@@ -42,9 +42,13 @@ make
 #make_build
 
 %install
-%make_install
 #mkdir -p $RPM_BUILD_ROOT/%{_bindir}
 #install  ./build/radeon-profile $RPM_BUILD_ROOT/%{_bindir}
+cd radeon-profile
+make install INSTALL_ROOT="%{buildroot}"
 
 %files
-%{_bindir}/%{name}
+%license LICENSE
+%{_bindir}/radeon-profile
+%{_datadir}/applications/radeon-profile.desktop
+%{_datadir}/icons/hicolor/512x512/apps/radeon-profile.png
