@@ -44,8 +44,14 @@ make
 %install
 #mkdir -p $RPM_BUILD_ROOT/%{_bindir}
 #install  ./build/radeon-profile $RPM_BUILD_ROOT/%{_bindir}
+#cd radeon-profile
+#make install INSTALL_ROOT="%{buildroot}"
 cd radeon-profile
-make install INSTALL_ROOT="%{buildroot}"
+install -Dm755 "radeon-profile" "%{buildroot}%{_bindir}/radeon-profile"
+install -Dm644 "extra/radeon-profile.png" "%{buildroot}%{_datadir}/pixmaps/radeon-profile.png"
+install -Dm644 "extra/radeon-profile.desktop" "%{buildroot}%{_datadir}/applications/radeon-profile.desktop"
+cd translations
+for t in $(ls *.qm); do install -Dm644 "$t" "%{buildroot}%{_datadir}/radeon-profile/$t"; done
 
 %files
 %license LICENSE
