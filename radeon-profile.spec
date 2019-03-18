@@ -12,6 +12,7 @@ BuildRequires:  qmake5
 BuildRequires:  pkgconfig(xrandr)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig
+BuildRequires:  pkgconfig(Qt5Charts)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Widgets)
