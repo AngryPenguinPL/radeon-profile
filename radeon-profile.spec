@@ -36,7 +36,7 @@ Application to read current clocks of ATi Radeon cards (xf86-video-ati, xf86-vid
 sed -i -e 's/TrayIcon;//' %{name}/extra/radeon-profile.desktop
 
 %build
-
+pushd %{name}
 %qmake_qt5
 %make
 
