@@ -1,5 +1,5 @@
 Name:           radeon-profile
-Version:        20190311
+Version:        20190903
 Release:        1
 Summary:        Application to read current clocks of ATi Radeon cards (xf86-video-ati, xf86-video-amdgpu) 
 License:        GPL2.0
@@ -33,28 +33,19 @@ Application to read current clocks of ATi Radeon cards (xf86-video-ati, xf86-vid
 %prep
 %setup -q
 
-%build
-mkdir -p build
-cd build
-qmake-qt5 "../radeon-profile/"
-make
+sed -i -e 's/TrayIcon;//' %{name}/extra/radeon-profile.desktop
 
-#make_build
+%build
+
+%qmake_qt5
+%make
 
 %install
-#mkdir -p $RPM_BUILD_ROOT/%{_bindir}
-#install  ./build/radeon-profile $RPM_BUILD_ROOT/%{_bindir}
-#cd radeon-profile
-#make install INSTALL_ROOT="%{buildroot}"
-cd radeon-profile
-install -Dm755 "radeon-profile" "%{buildroot}%{_bindir}/radeon-profile"
-install -Dm644 "extra/radeon-profile.png" "%{buildroot}%{_datadir}/pixmaps/radeon-profile.png"
-install -Dm644 "extra/radeon-profile.desktop" "%{buildroot}%{_datadir}/applications/radeon-profile.desktop"
-cd translations
-for t in $(ls *.qm); do install -Dm644 "$t" "%{buildroot}%{_datadir}/radeon-profile/$t"; done
+%make_install
 
 %files
-%license LICENSE
+%doc LICENSE README.md
 %{_bindir}/radeon-profile
 %{_datadir}/applications/radeon-profile.desktop
-%{_datadir}/icons/hicolor/512x512/apps/radeon-profile.png
+%{_iconsdir}/hicolor/*/apps/radeon-profile.png
+%{_datadir}/radeon-profile/*.qm
