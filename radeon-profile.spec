@@ -1,5 +1,5 @@
 Name:           radeon-profile
-Version:        20190311
+Version:        20190903
 Release:        1
 Summary:        Application to read current clocks of ATi Radeon cards (xf86-video-ati, xf86-video-amdgpu) 
 License:        GPL2.0
@@ -12,6 +12,7 @@ BuildRequires:  qmake5
 BuildRequires:  pkgconfig(xrandr)
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig
+BuildRequires:  pkgconfig(Qt5Charts)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Widgets)
@@ -32,12 +33,21 @@ Application to read current clocks of ATi Radeon cards (xf86-video-ati, xf86-vid
 %prep
 %setup -q
 
+sed -i -e 's/TrayIcon;//' %{name}/extra/radeon-profile.desktop
+
 %build
-%qmake_qt5 PREFIX=/usr
+pushd %{name}
+%qmake_qt5
 %make_build
+popd
 
 %install
-%make_install INSTALL_ROOT=%{buildroot}
+pushd %{name}
+%make_install INSTALL_ROOT="%{buildroot}"
 
 %files
-%{_bindir}/%{name}
+%doc LICENSE README.md
+%{_bindir}/radeon-profile
+%{_datadir}/applications/radeon-profile.desktop
+%{_iconsdir}/hicolor/*/apps/radeon-profile.png
+#{_datadir}/radeon-profile/*.qm
