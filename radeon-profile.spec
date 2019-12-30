@@ -38,12 +38,12 @@ sed -i -e 's/TrayIcon;//' %{name}/extra/radeon-profile.desktop
 %build
 pushd %{name}
 %qmake_qt5
-%make
+%make_build
 popd
 
 %install
 pushd %{name}
-%make_install
+%make_install INSTALL_ROOT="%{buildroot}"
 
 %files
 %doc LICENSE README.md
