@@ -39,6 +39,7 @@ sed -i -e 's/TrayIcon;//' %{name}/extra/radeon-profile.desktop
 pushd %{name}
 %qmake_qt5
 %make
+popd
 
 %install
 pushd %{name}
