@@ -50,4 +50,4 @@ pushd %{name}
 %{_bindir}/radeon-profile
 %{_datadir}/applications/radeon-profile.desktop
 %{_iconsdir}/hicolor/*/apps/radeon-profile.png
-%{_datadir}/radeon-profile/*.qm
+#{_datadir}/radeon-profile/*.qm
