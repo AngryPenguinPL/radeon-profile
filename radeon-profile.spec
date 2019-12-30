@@ -41,6 +41,7 @@ pushd %{name}
 %make
 
 %install
+pushd %{name}
 %make_install
 
 %files
